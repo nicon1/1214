@@ -144,8 +144,10 @@ public class BILLIntfAct implements BILLIntf
 		Role currentRole = session.getRole();
 		College college = session.getCollege();
 		StudentRecord record;
-
 		record = DataStore.getStudentRecord(userId);
+		
+		
+		
 		if (record == null) 
 		{
 			System.out.println("record not found");
