@@ -336,11 +336,12 @@ public class DataStore
 		}
 	}
 	
-	//generatebill
+	/*
+	 * generateBill
+	 */
 	public static Bill generateBill(String userId)
 	{
-		Bill retBill = new Bill();
-		
+		double balance = 0;
 		for(Bill bill : billHistory)
 		{
 			if(bill.getStudent().getId()==userId)
@@ -359,26 +360,26 @@ public class DataStore
 					currentDateBefore3Months.add(Calendar.MONTH, -3);
 					java.util.Date transacDate = new GregorianCalendar(year, month - 1, day).getTime();
 					java.util.Date endDate = new GregorianCalendar(yearNow, monthNow - 1, dayNow).getTime();
-					//java.util.Date startDate = new GregorianCalendar(yearNow, monthNow - 4, dayNow).getTime();
+					//get transactions this semester(within 3 months)
 					if (transacDate.after(currentDateBefore3Months.getTime()) && transacDate.before(endDate)) 
 					{
 						totalTransac = totalTransac + transac.getAmount();
-						
-						bill.setBalance(totalTransac);
-					}
-				}
-				for(StudentRecord record : studentRecords)
-				{
-					if(record.getStudent().getId()==userId)
-					{
-						double charge = Count.countFinalFee(record).doubleValue();
-						
-						retBill.setBalance(0);
+						for(StudentRecord record : studentRecords)
+						{
+							if(record.getStudent().getId()==userId)
+							{
+								double charge = Count.countFinalFee(record).doubleValue();
+								balance = charge - totalTransac;
+							}
+						}
+						bill.setBalance(balance);
 					}
 				}
 				return bill;
 			}
 		}
+		//if it's the first time generate
+		Bill retBill = new Bill();
 		for(StudentRecord record : studentRecords)
 		{
 			if(record.getStudent().getId()==userId)
@@ -388,7 +389,7 @@ public class DataStore
 				retBill.setClassStatus(record.getClassStatus());
 				retBill.setTransaction(null);
 				double charge = Count.countFinalFee(record).doubleValue();
-				retBill.setBalance(0);
+				retBill.setBalance(charge);
 			}
 		}
 		billHistory.add(retBill);

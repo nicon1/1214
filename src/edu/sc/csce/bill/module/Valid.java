@@ -138,7 +138,7 @@ public class Valid
 		{
 			throw new IllegalArgumentException("None");
 		}
-		if (transaction.getAmount().compareTo(new BigDecimal(0)) != 1) 
+		if (BigDecimal.valueOf(transaction.getAmount()).compareTo(new BigDecimal(0)) != 1) 
 		{
 			throw new IllegalArgumentException("0");
 		}
