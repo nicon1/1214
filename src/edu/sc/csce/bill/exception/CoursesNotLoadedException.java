@@ -1,5 +1,10 @@
 package edu.sc.csce.bill.exception;
 
+/**
+ * CoursesNotLoadedException.java
+ * Purpose: to handle exceptional conditions related to Courses path is correct or not
+ */
+
 public class CoursesNotLoadedException extends Exception
 {
 	public CoursesNotLoadedException() 
