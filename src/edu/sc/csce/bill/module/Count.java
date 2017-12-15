@@ -174,9 +174,10 @@ public class Count
 		for (Transaction t: allTransaction)
 		{
 			if (t.getType().equals(Type.PAYMENT)) 
-				balance = balance.add(t.getAmount());
+				balance = balance.add(BigDecimal.valueOf(t.getAmount()));
 			else
-				balance = balance.subtract(t.getAmount()); 
+				//BigDecimal.valueOf(val);
+				balance = balance.subtract(BigDecimal.valueOf(t.getAmount())); 
 		}	
 		for (Map.Entry<String, BigDecimal> entry : currentCharges.entrySet())
 	        balance = balance.subtract(entry.getValue()); 
@@ -190,9 +191,9 @@ public class Count
 		for (Transaction t: allTransaction)
 		{
 			if (t.getType().equals(Type.PAYMENT))
-				balance.add(t.getAmount());
+				balance.add(BigDecimal.valueOf(t.getAmount()));
 			else
-				balance.subtract(t.getAmount());
+				balance.subtract(BigDecimal.valueOf(t.getAmount()));
 		}
 		
 		return balance;
