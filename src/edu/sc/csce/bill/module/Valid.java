@@ -51,7 +51,7 @@ public class Valid
 			e.printStackTrace();
 		}
 	}
-		/*
+		
 	public static void validateUser(Permission permission) 
 	{
 		try 
@@ -75,8 +75,7 @@ public class Valid
 			e.printStackTrace();
 		}
 	}
-		*/
-	/*
+		
 	public static void validateUserRole(List<Permission> Roles) 
 	{
 		try 
@@ -128,7 +127,7 @@ public class Valid
 			throw new IllegalArgumentException("0");
 		}
     }
-*/
+
     /*
 	@SuppressWarnings("unlikely-arg-type")
 	public static void validateTransaction(Transaction transaction) 
