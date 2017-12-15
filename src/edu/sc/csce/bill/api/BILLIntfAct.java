@@ -210,7 +210,8 @@ public class BILLIntfAct implements BILLIntf
 	public Bill generateBill(String userId) throws Exception 
 	{
 		Valid.validateUserId(userId);
-		return null;
+		Bill bill = DataStore.generateBill(userId);
+		return bill;
 		// getCurrentBill(userId);
 	}
 
