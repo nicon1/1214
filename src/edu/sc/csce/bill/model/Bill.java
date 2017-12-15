@@ -4,9 +4,7 @@ import java.util.List;
 
 public class Bill 
 {
-//	public Bill() {
-//		super();
-//	} by Monna
+
 	private Student student;
 	private College college;
 	private ClassStatus classStatus;

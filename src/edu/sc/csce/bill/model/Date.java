@@ -2,9 +2,9 @@ package edu.sc.csce.bill.model;
 
 public class Date 
 {
-//	public Date() {
-//		
-//	}
+	public Date() {
+		super();
+	}
 	public Date(int month, int day, int year) {
 		super();
 		this.month = month;
