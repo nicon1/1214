@@ -59,6 +59,8 @@ public class DataStore
 	 * Load a list of courses from the file at the location provided by "fileName"
 	 * @param fileName The path of the courses file.
 	 */
+	
+	/*
 	public static void loadCourses(String fileName) throws CoursesNotLoadedException 
 	{
 		coursesFileName = fileName;
@@ -101,6 +103,7 @@ public class DataStore
 		}
 	}
 	
+	*/
 	/**
 	 * Load a list of student records from the file at the location provided by "fileName"
 	 * @param fileName The path of the student records file.
@@ -332,7 +335,7 @@ public class DataStore
 			int index = studentRecordsOriginal.indexOf(record);
 			if (index >= 0) 
 			{
-				studentRecordsOriginal.set(index, record);
+				studentRecordsOriginal.set(index, newRecord);
 				saveStudentRecords(studentRecordsFileName, studentRecordsOriginal);
 			}
 		}
@@ -403,7 +406,7 @@ public class DataStore
 			}
 		}
 	}
-	
+	/*
 	public static void addBill(Bill bill)throws BillsNotSavedException
 	{
 		if(bill==null)
@@ -418,11 +421,13 @@ public class DataStore
 			billHistory.add(bill);
 		}
 	}
-	
+	*/
+	/*
 	public static List<Bill> getBillHistory()
 	{
 		return billHistory;
 	}
+	*/
 	
 	//get bill using user id
 	public static List<Bill> getBill(String userId)
@@ -442,16 +447,17 @@ public class DataStore
 		}
 		return retBill;
 	}
+	/*
 	public static void setBillHistory(List<Bill> billHistory)
 	{
 		DataStore.billHistory = billHistory;
 	}
-	
+	*/
 //		public static void addPayment(String userId, double amount, String note) throws UserNotFoundException, StudentProfileNonExistent,  LogInUesrDoesNotHavePermission
 //	{
 //		// TODO
 //	} by Monna
-	
+	/*
 	public static void addPayment(String userId, BigDecimal amount, String note) throws UserNotFoundException, StudentProfileNonExistent,  LogInUesrDoesNotHavePermission
 	{
 		// TODO
@@ -470,5 +476,6 @@ public class DataStore
 		// TODO Auto-generated method stub
 		return null;
 	}
+	*/
 
 }

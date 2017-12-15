@@ -7,13 +7,7 @@ public class Transaction
 //	public Transaction() {
 //		
 //	}
-//	public Transaction(Type type,Date transactionDate,double amount, String note) {
-//		super();
-//		this.type = type;
-//		this.transactionDate = transactionDate;
-//		this.amount = amount;
-//		this.note = note;
-//	} // by Monna
+
 	private Type type;
 	private Date transactionDate;
 	private double amount; //by Monna--1214hao
