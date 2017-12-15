@@ -211,8 +211,11 @@ public class BILLIntfAct implements BILLIntf
 	{
 		Valid.validateUserId(userId);
 		Bill bill = DataStore.generateBill(userId);
+		if(bill==null)
+		{
+			throw new Exception();
+		}
 		return bill;
-		// getCurrentBill(userId);
 	}
 
 	/**
@@ -262,25 +265,17 @@ public class BILLIntfAct implements BILLIntf
 		return retBill;
 	}
 
-	public void applyPayment(String userId, BigDecimal amount, String note) throws Exception 
+	public void applyPayment(String userId, double amount, String note) throws Exception 
 	{
 		// TODO
 		Valid.validateUserId(userId);
-		if (amount.doubleValue() > 0 && note != null) 
+		if (amount> 0 ) 
 		{
-			DataStore.addPayment(userId, amount, note);
+			DataStore.applyPayment(userId, amount, note);
 		} else 
 		{
-			if (amount.doubleValue() != 0)
-				throw new IllegalArgumentException("not a valid");
-			else
-				throw new IllegalArgumentException("not a valid");
+			throw new IllegalArgumentException("not a valid");
 		}
-	}
-
-	public void applyPayment(String userId, double amount, String note) throws Exception 
-	{
-		// TODO Auto-generated method stub
 	}
 
 	public void clearSession() throws UsersNotLoadedException 

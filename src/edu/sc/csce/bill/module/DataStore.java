@@ -342,17 +342,23 @@ public class DataStore
 	public static Bill generateBill(String userId)
 	{
 		double balance = 0;
-		for(Bill bill : billHistory)
+		Bill retBill = new Bill();
+		double totalTransac = 0;
+		LocalDate dateNow = LocalDate.now();
+		int dayNow = dateNow.getDayOfMonth();
+		int monthNow = dateNow.getMonthValue();
+		int yearNow = dateNow.getYear();
+		for(StudentRecord record : studentRecords)
 		{
-			if(bill.getStudent().getId()==userId)
+			if(record.getStudent().getId()==userId)
 			{
-				double totalTransac = 0;
-				for(Transaction transac :bill.getTransaction())
+				retBill.setStudent(record.getStudent());
+				retBill.setCollege(record.getCollege());
+				retBill.setClassStatus(record.getClassStatus());
+				retBill.setTransaction(record.getTransactions());
+				double charge = Count.countFinalFee(record).doubleValue();
+				for(Transaction transac :retBill.getTransaction())
 				{
-					LocalDate dateNow = LocalDate.now();
-					int dayNow = dateNow.getDayOfMonth();
-					int monthNow = dateNow.getMonthValue();
-					int yearNow = dateNow.getYear();
 					int month = transac.getTransactionDate().getMonth();
 					int day = transac.getTransactionDate().getDay();
 					int year = transac.getTransactionDate().getYear();
@@ -364,39 +370,30 @@ public class DataStore
 					if (transacDate.after(currentDateBefore3Months.getTime()) && transacDate.before(endDate)) 
 					{
 						totalTransac = totalTransac + transac.getAmount();
-						for(StudentRecord record : studentRecords)
-						{
-							if(record.getStudent().getId()==userId)
-							{
-								double charge = Count.countFinalFee(record).doubleValue();
-								balance = charge - totalTransac;
-							}
-						}
-						bill.setBalance(balance);
 					}
 				}
-				return bill;
+				balance = charge - totalTransac;
+				retBill.setBalance(balance);
 			}
+			return retBill;
 		}
-		//if it's the first time generate
-		Bill retBill = new Bill();
-		for(StudentRecord record : studentRecords)
-		{
-			if(record.getStudent().getId()==userId)
-			{
-				retBill.setStudent(record.getStudent());
-				retBill.setCollege(record.getCollege());
-				retBill.setClassStatus(record.getClassStatus());
-				retBill.setTransaction(null);
-				double charge = Count.countFinalFee(record).doubleValue();
-				retBill.setBalance(charge);
-			}
-		}
-		billHistory.add(retBill);
-		return retBill;
+		return null;
 	}
 
-	
+	/*
+	 * applyPayment
+	 */
+	public static void applyPayment(String userId, double amount, String note)throws Exception
+	{
+		for(Bill bill : billHistory)
+		{
+			if(bill.getStudent().getId()==userId)
+			{
+				
+			}
+		}	
+			
+	}
 	
 	public static void addBill(Bill bill)throws BillsNotSavedException
 	{

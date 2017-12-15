@@ -151,7 +151,7 @@ public interface BILLIntf
      * or fails to save to file.  
      * SEE NOTE IN CLASS HEADER.
      */
-    public void applyPayment(String userId, BigDecimal bigDecimal, String note) 
+    public void applyPayment(String userId, double bigDecimal, String note) 
             throws Exception;
 
 }
