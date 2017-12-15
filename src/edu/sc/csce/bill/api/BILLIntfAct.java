@@ -267,7 +267,6 @@ public class BILLIntfAct implements BILLIntf
 
 	public void applyPayment(String userId, double amount, String note) throws Exception 
 	{
-		// TODO
 		Valid.validateUserId(userId);
 		if (amount> 0 ) 
 		{

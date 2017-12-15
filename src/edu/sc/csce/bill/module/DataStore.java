@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+import java.util.TimeZone;
 import java.time.LocalDate;
 import java.util.GregorianCalendar;
 
@@ -37,6 +38,7 @@ import edu.sc.csce.bill.model.Student;
 import edu.sc.csce.bill.model.StudentRecord;
 import edu.sc.csce.bill.model.Term;
 import edu.sc.csce.bill.model.Transaction;
+import edu.sc.csce.bill.model.Type;
 
 public class DataStore 
 {
@@ -385,14 +387,21 @@ public class DataStore
 	 */
 	public static void applyPayment(String userId, double amount, String note)throws Exception
 	{
-		for(Bill bill : billHistory)
+		Type type = Type.PAYMENT;
+		Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+		int day = calendar.get(Calendar.DATE);
+		int month = calendar.get(Calendar.MONTH) + 1;
+	    int year = calendar.get(Calendar.YEAR);
+	    edu.sc.csce.bill.model.Date dateI = new edu.sc.csce.bill.model.Date(month,day,year);
+
+		Transaction transac = new Transaction(type,dateI,amount,note);
+		for(StudentRecord record : studentRecords)
 		{
-			if(bill.getStudent().getId()==userId)
+			if(record.getStudent().getId()==userId)
 			{
-				
+				record.addTransactions(transac);
 			}
-		}	
-			
+		}
 	}
 	
 	public static void addBill(Bill bill)throws BillsNotSavedException

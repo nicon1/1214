@@ -20,9 +20,15 @@ public class Transaction
 	//private double amount;
 	private String note;
 	
-	public Transaction(Type charge, Date date2, double d, String string) {
-		// TODO Auto-generated constructor stub
+	public Transaction(Type type,Date transactionDate,double amount, String note) 
+	{
+		super();
+		this.type = type;
+		this.transactionDate = transactionDate;
+		this.amount = amount;
+		this.note = note;
 	}
+	
 	public Type getType()
 	{
 		return type;

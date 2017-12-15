@@ -5,12 +5,12 @@ public class Date
 //	public Date() {
 //		
 //	}
-//	public Date(int month, int day, int year) {
-//		super();
-//		this.month = month;
-//		this.day = day;
-//		this.year = year;
-//	} by Monna
+	public Date(int month, int day, int year) {
+		super();
+		this.month = month;
+		this.day = day;
+		this.year = year;
+	} //by Monna
 	public int month;
 	public int day;
 	public int year;
