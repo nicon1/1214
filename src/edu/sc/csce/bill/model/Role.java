@@ -2,5 +2,13 @@ package edu.sc.csce.bill.model;
 
 public enum Role 
 {
-	STUDENT, ADMIN;
+	/**
+	* indicates admin role
+	*/ 
+	ADMIN,
+	
+	/**
+	* indicates student role
+	*/ 
+	STUDENT; 
 }

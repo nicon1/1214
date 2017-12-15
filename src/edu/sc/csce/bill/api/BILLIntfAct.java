@@ -1,6 +1,5 @@
 package edu.sc.csce.bill.api;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -8,7 +7,7 @@ import java.util.List;
 
 import edu.sc.csce.bill.exception.CollegeNotMatch;
 import edu.sc.csce.bill.exception.LogInUesrDoesNotHavePermission;
-//import edu.sc.csce.bill.exception.NoUserSetInSessionException; //by Monna
+//import edu.sc.csce.bill.exception.NoUserSetInSessionException; //by 
 import edu.sc.csce.bill.exception.StudentProfileNonExistent;
 import edu.sc.csce.bill.exception.StudentRecordsNotEditedException;
 import edu.sc.csce.bill.exception.StudentRecordsNotSavedException;
@@ -17,13 +16,11 @@ import edu.sc.csce.bill.exception.UsersNotLoadedException;
 import edu.sc.csce.bill.model.Bill;
 import edu.sc.csce.bill.model.ClassStatus;
 import edu.sc.csce.bill.model.College;
-//import edu.sc.csce.bill.model.Permission; //by Monna
+//import edu.sc.csce.bill.model.Permission; //by 
 import edu.sc.csce.bill.model.Role;
 import edu.sc.csce.bill.model.Student;
-import edu.sc.csce.bill.model.StudentCourse; //by Monna
 import edu.sc.csce.bill.model.StudentRecord;
 import edu.sc.csce.bill.model.Transaction;
-import edu.sc.csce.bill.model.Type; //by Monna
 import edu.sc.csce.bill.module.DataStore;
 import edu.sc.csce.bill.module.Session;
 import edu.sc.csce.bill.module.Valid;
@@ -77,7 +74,7 @@ public class BILLIntfAct implements BILLIntf
 //			System.out.println("Exception");
 //		}
 //		//the main method is for testing use, need delete
-//	} //by Monna
+//	} //by 
 	private Session session;
 
 	public BILLIntfAct() 
@@ -173,7 +170,7 @@ public class BILLIntfAct implements BILLIntf
 		//if (() && (currentRole!= Role.ADMIN)) 
 		//{
 		//	throw new StudentRecordsNotEditedException();
-		//} // by Monna 
+		//} // by  
 
 		if (userId != currentUser && currentRole != Role.ADMIN) 
 		{
@@ -311,7 +308,7 @@ public class BILLIntfAct implements BILLIntf
 	//				}
 	//			}
 	//			
-	//		} // by Monna
+	//		} // by 
 		//return true;
 	//}
 }
