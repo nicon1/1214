@@ -5,9 +5,9 @@ import java.util.List;
 
 public class StudentRecord
 {
-//	public StudentRecord() {
-//		super();
-//	} //by Monna
+	public StudentRecord() {
+		super();
+	} //by Monna
 	private Student student;
 	private College college;
 	private BigDecimal balance;
