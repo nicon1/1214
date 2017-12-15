@@ -29,13 +29,6 @@ public class BILLTest
 		this.bill.loadRecords(studentRecordsPath);
 	}
 	
-	@Test
-	public void testClearSession_Invalid() throws UserNotFoundException, UsersNotLoadedException 
-	{
-		exception.expect(UsersNotLoadedException.class);
-		bill.clearSession();
-		assert(bill.getUser() == null);
-	}
 	
 	@Test(expected=StudentProfileNonExistent.class)
 	public void testNonExistedUserRecords() throws Exception 

@@ -352,7 +352,7 @@ public class DataStore
 		int yearNow = dateNow.getYear();
 		for(StudentRecord record : studentRecords)
 		{
-			if(record.getStudent().getId()==userId)
+			if(record.getStudent().getId().equals(userId))
 			{
 				retBill.setStudent(record.getStudent());
 				retBill.setCollege(record.getCollege());

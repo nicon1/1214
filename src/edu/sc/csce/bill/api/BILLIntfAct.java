@@ -137,8 +137,11 @@ public class BILLIntfAct implements BILLIntf
 		return studentId;
 	}
 
-	public StudentRecord getRecord(String userId) throws CollegeNotMatch 
+	public StudentRecord getRecord(String userId) throws Exception 
 	{
+		if (NoPermission(userId)){
+			throw new Exception();
+		}
 		// validate part here
 		String currentUser = session.getUser();
 		Role currentRole = session.getRole();
@@ -159,8 +162,11 @@ public class BILLIntfAct implements BILLIntf
 	}
 
 	public void editRecord(String userId, StudentRecord record, Boolean permanent)
-			throws StudentRecordsNotEditedException, StudentProfileNonExistent, StudentRecordsNotSavedException 
+			throws Exception 
 	{
+		if (NoPermission(userId)){
+			throw new Exception();
+		}
 		// validate part here
 		String currentUser = session.getUser();
 		Role currentRole = session.getRole();
@@ -175,7 +181,7 @@ public class BILLIntfAct implements BILLIntf
 		//	throw new StudentRecordsNotEditedException();
 		//} // by Monna 
 
-		if (userId != currentUser && currentRole != Role.ADMIN) 
+		if (!userId.equals(currentUser) && currentRole.equals( Role.ADMIN)) 
 		{
 			throw new StudentRecordsNotEditedException();
 		} 
@@ -209,6 +215,9 @@ public class BILLIntfAct implements BILLIntf
 
 	public Bill generateBill(String userId) throws Exception 
 	{
+		if (NoPermission(userId)){
+			throw new Exception();
+		}
 		Valid.validateUserId(userId);
 		Bill bill = DataStore.generateBill(userId);
 		if(bill==null)
@@ -225,6 +234,9 @@ public class BILLIntfAct implements BILLIntf
 	public Bill viewCharges(String userId, int startMonth, int startDay, int startYear, int endMonth, int endDay,
 			int endYear) throws Exception 
 	{
+		if (NoPermission(userId)){
+			throw new Exception();
+		}
 		Valid.validateUserId(userId);
 		Valid.validateDate(startMonth, startDay, startYear);
 		Valid.validateDate(endMonth, endDay, endYear);
@@ -267,6 +279,9 @@ public class BILLIntfAct implements BILLIntf
 
 	public void applyPayment(String userId, double amount, String note) throws Exception 
 	{
+		if (NoPermission(userId)){
+			throw new Exception();
+		}
 		Valid.validateUserId(userId);
 		if (amount> 0 ) 
 		{
@@ -286,32 +301,33 @@ public class BILLIntfAct implements BILLIntf
 
 		session.clearSession();
 	}
-	//public boolean NoPermission(String userId) 
-	//{
-	//	
-	//	String CurrentUserId = getUser();
-	//	String TargetUserId = userId;
-	//	College college = session.getCollege();
-	//	List<String> AuthorityStudentlist = DataStore.getStudentId(college);
-	//	
-	//	if (CurrentUserId == TargetUserId) {
-	//	return false;
-	//	}
-	//	else {
-	//		if (session.getRole() == Role.STUDENT) {
-	//			return true;
-	//		}
-	//		else {
-	//			for(String studentId : AuthorityStudentlist) {
-	//				if (studentId == TargetUserId ) {
-	//					return false;
-	//				}
-	//				else {
-	//					return true;
-	//				}
-	//			}
-	//			
-	//		} // by Monna
-		//return true;
-	//}
+	public boolean NoPermission(String userId) 
+	{
+		
+		String CurrentUserId = getUser();
+		String TargetUserId = userId;
+		College college = session.getCollege();
+		List<String> AuthorityStudentlist = DataStore.getStudentId(college);
+		
+		if (CurrentUserId.equals(TargetUserId)) {
+		return false;
+		}
+		else {
+			if (session.getRole() == Role.STUDENT) {
+				return true;
+			}
+			else {
+				for(String studentId : AuthorityStudentlist) {
+					if (studentId == TargetUserId ) {
+						return false;
+					}
+					else {
+						return true;
+					}
+				}
+				
+			} // by Monna
+		return true;
+		}
+	}
 }
