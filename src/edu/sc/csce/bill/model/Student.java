@@ -2,9 +2,9 @@ package edu.sc.csce.bill.model;
 
 public class Student 
 {
-//	public Student() {
-//		super();
-//	} //by Monna
+	public Student() {
+		super();
+	} //by Monna
 	private String id;
 	private String firstName;
 	private String lastName;
