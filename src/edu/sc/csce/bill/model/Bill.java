@@ -6,7 +6,7 @@ public class Bill
 {
 //	public Bill() {
 //		super();
-//	} by Monna
+//	} by 
 	private Student student;
 	private College college;
 	private ClassStatus classStatus;
