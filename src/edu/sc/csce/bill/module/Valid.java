@@ -128,7 +128,6 @@ public class Valid
 		}
     }
 
-    /*
 	@SuppressWarnings("unlikely-arg-type")
 	public static void validateTransaction(Transaction transaction) 
 	{
@@ -151,7 +150,6 @@ public class Valid
 		validateDate(transaction.getTransactionDate().month, transaction.getTransactionDate().day, transaction.getTransactionDate().year);	
 	}
 
-*/
 	public static boolean validateDate(int month, int day, int year) 
 	{
 		if (month > 12 || month < 1)
